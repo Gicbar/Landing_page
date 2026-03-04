@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hotel Garzón Huila — Donde la naturaleza te abraza</title>
+  <meta name="description" content="Hotel Garzón Huila. Turismo natural, cultural y cafetero en el corazón del Huila, Colombia. Reserva ahora y vive una experiencia única."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    /* ── RESET & VARIABLES ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream:      #F5F0E8;
+      --warm-white: #FDFBF7;
+      --coffee:     #3D2314;
+      --espresso:   #2A1509;
+      --mocha:      #7C4A2D;
+      --sage:       #6B7C5C;
+      --sage-light: #A8B89A;
+      --terra:      #C06540;
+      --gold:       #B8955A;
+      --gold-light: #D4AF72;
+      --text-dark:  #1E1209;
+      --text-mid:   #5C4033;
+      --text-light: #9E8272;
+      --border:     rgba(61,35,20,.12);
+      --radius:     2px;
+      --transition: .4s cubic-bezier(.25,.46,.45,.94);
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--warm-white);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ── TYPOGRAPHY ── */
+    .serif { font-family: 'Cormorant Garamond', serif; }
+    h1,h2,h3 { font-family: 'Cormorant Garamond', serif; font-weight: 300; line-height: 1.15; }
+    h1 { font-size: clamp(2.8rem, 6vw, 5.5rem); letter-spacing: -.02em; }
+    h2 { font-size: clamp(2rem, 4vw, 3.4rem); letter-spacing: -.01em; }
+    h3 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); }
+    p  { font-size: clamp(.9rem, 1.5vw, 1rem); line-height: 1.75; color: var(--text-mid); }
+
+    /* ── UTILITY ── */
+    .container { width: min(1200px, 92vw); margin-inline: auto; }
+    .tag {
+      display: inline-block;
+      font-size: .7rem; font-weight: 500; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--gold);
+      border: 1px solid var(--gold-light);
+      padding: .3rem .9rem; border-radius: 50px;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .85rem 2rem; font-size: .88rem; font-weight: 500;
+      letter-spacing: .04em; border-radius: var(--radius);
+      cursor: pointer; border: none; transition: var(--transition);
+    }
+    .btn-primary {
+      background: var(--coffee); color: var(--cream);
+    }
+    .btn-primary:hover { background: var(--espresso); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(61,35,20,.25); }
+    .btn-whatsapp {
+      background: #25D366; color: #fff;
+    }
+    .btn-whatsapp:hover { background: #1ebe5c; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,.3); }
+    .btn-outline {
+      background: transparent; color: var(--cream);
+      border: 1px solid rgba(255,255,255,.5);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,.1); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+
+    /* ═══════════════════════════════════════
+       NAVBAR
+    ═══════════════════════════════════════ */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1.2rem 0;
+      transition: background var(--transition), padding var(--transition), box-shadow var(--transition);
+    }
+    #navbar.scrolled {
+      background: rgba(253,251,247,.97);
+      backdrop-filter: blur(12px);
+      padding: .8rem 0;
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 300; letter-spacing: .04em;
+      color: var(--cream);
+      transition: color var(--transition);
+      white-space: nowrap;
+    }
+    #navbar.scrolled .nav-logo { color: var(--coffee); }
+    .nav-logo span { color: var(--gold-light); }
+    #navbar.scrolled .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 2rem;
+    }
+    .nav-links a {
+      font-size: .82rem; font-weight: 400; letter-spacing: .06em;
+      text-transform: uppercase; color: rgba(255,255,255,.85);
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+      height: 1px; background: var(--gold-light);
+      transform: scaleX(0); transition: transform var(--transition);
+    }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-links a:hover { color: #fff; }
+    #navbar.scrolled .nav-links a { color: var(--text-mid); }
+    #navbar.scrolled .nav-links a:hover { color: var(--coffee); }
+
+    .nav-cta { display: flex; align-items: center; gap: .8rem; }
+    .nav-reserve {
+      padding: .5rem 1.3rem; font-size: .78rem;
+      background: var(--gold); color: var(--espresso);
+      border-radius: var(--radius); font-weight: 500;
+      letter-spacing: .05em; transition: var(--transition);
+    }
+    .nav-reserve:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    /* hamburger */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--cream); transition: var(--transition); }
+    #navbar.scrolled .hamburger span { background: var(--coffee); }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none; flex-direction: column;
+      background: var(--warm-white);
+      padding: 1.5rem 1.5rem 2rem;
+      border-top: 1px solid var(--border);
+      gap: .2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: .9rem; color: var(--text-mid); padding: .75rem 0;
+      border-bottom: 1px solid var(--border);
+      letter-spacing: .06em; text-transform: uppercase;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-cta { display: flex; gap: .8rem; margin-top: 1.2rem; flex-wrap: wrap; }
+
+    /* ═══════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════ */
+    #hero {
+      position: relative; height: 100svh; min-height: 600px;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-video-wrap {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    /* Placeholder video background using layered CSS art */
+    .hero-video-wrap::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 1;
+      background:
+        linear-gradient(160deg, rgba(42,21,9,.6) 0%, rgba(42,21,9,.25) 40%, rgba(107,124,92,.2) 100%),
+        linear-gradient(to bottom, rgba(0,0,0,.2) 0%, transparent 40%, rgba(0,0,0,.5) 100%);
+    }
+    .hero-video-wrap img {
+      position: absolute; inset: 0; object-fit: cover;
+      width: 100%; height: 100%;
+      animation: heroZoom 18s ease-in-out infinite alternate;
+    }
+    @keyframes heroZoom {
+      from { transform: scale(1); }
+      to   { transform: scale(1.07); }
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      text-align: center; color: #fff;
+      padding: 0 1.5rem;
+      max-width: 800px;
+    }
+    .hero-eyebrow {
+      font-size: .72rem; letter-spacing: .25em; text-transform: uppercase;
+      color: var(--gold-light); margin-bottom: 1.4rem;
+      opacity: 0; animation: fadeUp .8s .3s forwards;
+    }
+    .hero-content h1 {
+      font-weight: 300; color: #fff;
+      opacity: 0; animation: fadeUp .9s .5s forwards;
+      text-shadow: 0 2px 30px rgba(0,0,0,.25);
+    }
+    .hero-content h1 em { font-style: italic; color: var(--gold-light); }
+    .hero-subtitle {
+      font-size: clamp(.95rem, 1.8vw, 1.1rem);
+      color: rgba(255,255,255,.8); margin: 1.4rem 0 2.5rem;
+      opacity: 0; animation: fadeUp .9s .7s forwards;
+    }
+    .hero-buttons {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp .9s .9s forwards;
+    }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      z-index: 2; display: flex; flex-direction: column; align-items: center; gap: .5rem;
+      color: rgba(255,255,255,.6); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase;
+      animation: fadeIn 1s 1.5s both;
+    }
+    .hero-scroll-line {
+      width: 1px; height: 40px; background: rgba(255,255,255,.3);
+      animation: scrollLine 2s ease infinite;
+    }
+    @keyframes scrollLine {
+      0%   { transform: scaleY(0); transform-origin: top; }
+      50%  { transform: scaleY(1); transform-origin: top; }
+      51%  { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+    @keyframes fadeUp  { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+    @keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
+
+    /* ═══════════════════════════════════════
+       BENEFITS STRIP
+    ═══════════════════════════════════════ */
+    #benefits {
+      background: var(--coffee);
+      padding: 3.5rem 0;
+    }
+    .benefits-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    }
+    .benefit-item {
+      padding: 2rem 1.5rem; text-align: center;
+      border-right: 1px solid rgba(255,255,255,.08);
+      transition: background var(--transition);
+    }
+    .benefit-item:last-child { border-right: none; }
+    .benefit-item:hover { background: rgba(255,255,255,.04); }
+    .benefit-icon {
+      font-size: 1.6rem; margin-bottom: .8rem;
+      display: block;
+    }
+    .benefit-item h3 {
+      font-size: 1rem; font-family: 'DM Sans', sans-serif;
+      font-weight: 500; color: var(--cream); margin-bottom: .3rem;
+    }
+    .benefit-item p {
+      font-size: .8rem; color: rgba(245,240,232,.5); line-height: 1.5;
+    }
+
+    /* ═══════════════════════════════════════
+       ABOUT GARZÓN
+    ═══════════════════════════════════════ */
+    #about {
+      padding: 7rem 0;
+      background: var(--warm-white);
+    }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    }
+    .about-images {
+      position: relative; height: 520px;
+    }
+    .about-img-main {
+      position: absolute; top: 0; left: 0; width: 72%; height: 75%;
+      border-radius: var(--radius); overflow: hidden;
+      box-shadow: 0 20px 60px rgba(61,35,20,.15);
+    }
+    .about-img-accent {
+      position: absolute; bottom: 0; right: 0; width: 52%; height: 55%;
+      border-radius: var(--radius); overflow: hidden;
+      box-shadow: 0 16px 40px rgba(61,35,20,.12);
+      border: 6px solid var(--warm-white);
+    }
+    .about-badge {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      background: var(--gold); color: var(--espresso);
+      width: 80px; height: 80px; border-radius: 50%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      box-shadow: 0 8px 24px rgba(184,149,90,.4);
+      z-index: 2;
+    }
+    .about-badge .num { font-size: 1.5rem; font-weight: 600; line-height: 1; }
+    .about-badge .lbl { font-size: .55rem; letter-spacing: .1em; text-transform: uppercase; }
+    .about-text { }
+    .about-text .tag { }
+    .about-text h2 { margin-bottom: 1.2rem; }
+    .about-text h2 em { color: var(--mocha); font-style: italic; }
+    .about-text p { margin-bottom: 1rem; }
+    .about-facts {
+      display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap;
+    }
+    .fact { }
+    .fact .n { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: var(--coffee); line-height: 1; }
+    .fact .l { font-size: .75rem; color: var(--text-light); letter-spacing: .08em; text-transform: uppercase; }
+
+    /* ═══════════════════════════════════════
+       GALLERY
+    ═══════════════════════════════════════ */
+    #gallery {
+      padding: 7rem 0 5rem;
+      background: var(--cream);
+    }
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-header p { max-width: 500px; margin-inline: auto; margin-top: .8rem; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: 260px 260px;
+      gap: 10px;
+    }
+    .gallery-item {
+      overflow: hidden; border-radius: var(--radius);
+      cursor: pointer; position: relative;
+    }
+    .gallery-item img { transition: transform .6s var(--transition); }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(42,21,9,.4) 0%, transparent 50%);
+      opacity: 0; transition: opacity var(--transition);
+    }
+    .gallery-item:hover::after { opacity: 1; }
+    .g1 { grid-column: 1 / 6;  grid-row: 1; }
+    .g2 { grid-column: 6 / 9;  grid-row: 1; }
+    .g3 { grid-column: 9 / 13; grid-row: 1; }
+    .g4 { grid-column: 1 / 4;  grid-row: 2; }
+    .g5 { grid-column: 4 / 9;  grid-row: 2; }
+    .g6 { grid-column: 9 / 13; grid-row: 2; }
+
+    /* ═══════════════════════════════════════
+       SERVICES
+    ═══════════════════════════════════════ */
+    #services {
+      padding: 7rem 0;
+      background: var(--warm-white);
+    }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+      margin-top: 4rem;
+      border: 1px solid var(--border);
+    }
+    .service-card {
+      padding: 3rem 2.5rem;
+      border-right: 1px solid var(--border);
+      position: relative; overflow: hidden;
+      transition: background var(--transition);
+    }
+    .service-card:nth-child(3n) { border-right: none; }
+    .service-card:nth-child(n+4) { border-top: 1px solid var(--border); }
+    .service-card:hover { background: var(--cream); }
+    .service-card::before {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: linear-gradient(90deg, var(--gold), var(--terra));
+      transform: scaleX(0); transition: transform var(--transition);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem; font-weight: 300; color: var(--border);
+      line-height: 1; margin-bottom: 1rem;
+    }
+    .service-card h3 { color: var(--coffee); margin-bottom: .7rem; }
+    .service-card p { font-size: .85rem; }
+    .service-icon { font-size: 1.4rem; margin-bottom: 1rem; display: block; }
+
+    /* ═══════════════════════════════════════
+       TESTIMONIALS
+    ═══════════════════════════════════════ */
+    #testimonials {
+      padding: 7rem 0;
+      background: var(--espresso);
+      position: relative; overflow: hidden;
+    }
+    #testimonials::before {
+      content: '\201C';
+      position: absolute; top: -2rem; left: 5%;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20rem; color: rgba(255,255,255,.03);
+      line-height: 1; pointer-events: none; user-select: none;
+    }
+    #testimonials .section-header h2 { color: var(--cream); }
+    #testimonials .section-header p { color: rgba(245,240,232,.5); }
+    .testimonials-track {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+    .testimonial-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .testimonial-card:hover { background: rgba(255,255,255,.07); transform: translateY(-4px); }
+    .stars { color: var(--gold); font-size: .9rem; margin-bottom: 1.2rem; letter-spacing: 2px; }
+    .testimonial-card blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 300; font-style: italic;
+      color: rgba(245,240,232,.9); line-height: 1.7; margin-bottom: 1.8rem;
+    }
+    .reviewer { display: flex; align-items: center; gap: .9rem; }
+    .reviewer-avatar {
+      width: 44px; height: 44px; border-radius: 50%; overflow: hidden;
+      flex-shrink: 0; background: var(--mocha);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--cream);
+    }
+    .reviewer-name { font-size: .85rem; color: var(--cream); font-weight: 500; }
+    .reviewer-loc { font-size: .75rem; color: rgba(245,240,232,.4); }
+
+    /* ═══════════════════════════════════════
+       CONTACT
+    ═══════════════════════════════════════ */
+    #contact {
+      padding: 7rem 0;
+      background: var(--cream);
+    }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+    }
+    .contact-info h2 { margin-bottom: 1rem; }
+    .contact-info p { margin-bottom: 2rem; }
+    .contact-details { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 2.5rem; }
+    .contact-detail { display: flex; align-items: flex-start; gap: 1rem; }
+    .cd-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .1rem; }
+    .cd-text strong { display: block; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); margin-bottom: .2rem; }
+    .cd-text span { font-size: .9rem; color: var(--text-mid); }
+
+    .contact-form {
+      background: var(--warm-white);
+      padding: 3rem; border-radius: var(--radius);
+      box-shadow: 0 4px 40px rgba(61,35,20,.06);
+    }
+    .form-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; color: var(--coffee); margin-bottom: 2rem;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1rem; }
+    .form-group label { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--text-light); }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: .85rem 1rem;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: var(--cream); color: var(--text-dark);
+      font-family: 'DM Sans', sans-serif; font-size: .9rem;
+      transition: border-color var(--transition);
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-actions { display: flex; gap: 1rem; margin-top: .5rem; flex-wrap: wrap; }
+    .btn-submit {
+      background: var(--coffee); color: var(--cream);
+      padding: .9rem 2.2rem; font-size: .88rem;
+      border: none; cursor: pointer; border-radius: var(--radius);
+      font-family: 'DM Sans', sans-serif; font-weight: 500;
+      letter-spacing: .04em; transition: var(--transition);
+      flex: 1;
+    }
+    .btn-submit:hover { background: var(--espresso); transform: translateY(-2px); }
+
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
+    #footer {
+      background: var(--text-dark);
+      padding: 5rem 0 2.5rem;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .footer-brand {}
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 300; color: var(--cream);
+      margin-bottom: 1rem; display: block;
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-brand p { font-size: .82rem; color: rgba(245,240,232,.4); line-height: 1.8; max-width: 260px; }
+    .footer-social { display: flex; gap: .8rem; margin-top: 1.5rem; }
+    .footer-social a {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .85rem; color: rgba(245,240,232,.5);
+      transition: var(--transition);
+    }
+    .footer-social a:hover { border-color: var(--gold); color: var(--gold); }
+    .footer-col h4 {
+      font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.4rem; font-family: 'DM Sans'; font-weight: 500;
+    }
+    .footer-col ul { display: flex; flex-direction: column; gap: .7rem; }
+    .footer-col ul a { font-size: .83rem; color: rgba(245,240,232,.45); transition: color var(--transition); }
+    .footer-col ul a:hover { color: var(--cream); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 2rem; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom p { font-size: .75rem; color: rgba(245,240,232,.25); }
+    .footer-bottom a { color: var(--gold); }
+
+    /* floating whatsapp */
+    .wa-float {
+      position: fixed; bottom: 1.8rem; right: 1.8rem; z-index: 999;
+      display: flex; align-items: center; gap: .7rem;
+      background: #25D366; color: #fff;
+      padding: .75rem 1.4rem .75rem 1rem;
+      border-radius: 50px;
+      box-shadow: 0 6px 24px rgba(37,211,102,.35);
+      font-size: .85rem; font-weight: 500;
+      transition: var(--transition);
+      animation: waFloat 1s 2s both;
+    }
+    .wa-float:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 10px 32px rgba(37,211,102,.45); }
+    .wa-float svg { width: 20px; height: 20px; flex-shrink: 0; }
+    @keyframes waFloat { from { opacity:0; transform:scale(.5); } to { opacity:1; transform:scale(1); } }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .about-grid { gap: 3rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .benefits-grid { grid-template-columns: repeat(2,1fr); }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-images { height: 360px; }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, 200px);
+      }
+      .g1 { grid-column: 1/2; grid-row: 1; }
+      .g2 { grid-column: 2/3; grid-row: 1; }
+      .g3 { grid-column: 1/3; grid-row: 2; }
+      .g4 { grid-column: 1/2; grid-row: 3; }
+      .g5 { grid-column: 2/3; grid-row: 3; }
+      .g6 { display: none; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .service-card:nth-child(3n) { border-right: 1px solid var(--border); }
+      .service-card:nth-child(2n) { border-right: none; }
+      .testimonials-track { grid-template-columns: 1fr; max-width: 520px; margin-inline: auto; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .benefits-grid { grid-template-columns: 1fr 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { border-right: none !important; border-top: none; }
+      .service-card:not(:last-child) { border-bottom: 1px solid var(--border); }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .about-images { height: 280px; }
+      .wa-float span { display: none; }
+      .wa-float { padding: .85rem; border-radius: 50%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ FLOATING WHATSAPP ═══ -->
+<a class="wa-float" href="https://wa.me/573000000000?text=Hola,%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20Hotel%20Garz%C3%B3n%20Huila" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span>WhatsApp</span>
+</a>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="#hero" class="nav-logo">Hotel <span>Garzón</span> Huila</a>
+    <ul class="nav-links">
+      <li><a href="#about">Nosotros</a></li>
+      <li><a href="#gallery">Galería</a></li>
+      <li><a href="#services">Servicios</a></li>
+      <li><a href="#testimonials">Huéspedes</a></li>
+      <li><a href="#contact">Contacto</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#contact" class="nav-reserve">Reservar ahora</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="container mobile-menu" id="mobileMenu">
+    <a href="#about" class="mobile-link">Nosotros</a>
+    <a href="#gallery" class="mobile-link">Galería</a>
+    <a href="#services" class="mobile-link">Servicios</a>
+    <a href="#testimonials" class="mobile-link">Huéspedes</a>
+    <a href="#contact" class="mobile-link">Contacto</a>
+    <div class="mobile-cta">
+      <a href="#contact" class="btn btn-primary">Reservar ahora</a>
+      <a href="https://wa.me/573000000000" target="_blank" class="btn btn-whatsapp">
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-video-wrap">
+    <!-- Reemplaza el src con tu video o imagen principal -->
+    <img src="https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=1800&q=85&auto=format&fit=crop" alt="Paisaje Garzón Huila"/>
+  </div>
+  <div class="hero-content container">
+    <p class="hero-eyebrow">Garzón, Huila · Colombia</p>
+    <h1>Donde la naturaleza<br/><em>te abraza</em></h1>
+    <p class="hero-subtitle">Vive la experiencia del sur del Huila entre café, cultura colonial y<br/>paisajes que detienen el tiempo.</p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn btn-primary">✦ Reservar ahora</a>
+      <a href="https://wa.me/573000000000?text=Hola,%20quiero%20reservar%20en%20Hotel%20Garz%C3%B3n%20Huila" target="_blank" class="btn btn-outline">Consultar por WhatsApp</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Descubrir</span>
+  </div>
+</section>
+
+<!-- ═══ BENEFITS ═══ -->
+<section id="benefits">
+  <div class="container">
+    <div class="benefits-grid">
+      <div class="benefit-item reveal">
+        <span class="benefit-icon">☕</span>
+        <h3>Ruta del Café</h3>
+        <p>Visitas guiadas a fincas cafeteras de la región</p>
+      </div>
+      <div class="benefit-item reveal reveal-delay-1">
+        <span class="benefit-icon">🌿</span>
+        <h3>Entorno Natural</h3>
+        <p>Rodeado de montañas y ríos del Macizo Colombiano</p>
+      </div>
+      <div class="benefit-item reveal reveal-delay-2">
+        <span class="benefit-icon">🏛️</span>
+        <h3>Centro Cultural</h3>
+        <p>A pasos del patrimonio colonial e histórico</p>
+      </div>
+      <div class="benefit-item reveal reveal-delay-3">
+        <span class="benefit-icon">🌟</span>
+        <h3>Servicio Premium</h3>
+        <p>Atención personalizada las 24 horas del día</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-images reveal">
+        <div class="about-img-main">
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&q=80&auto=format&fit=crop" alt="Hotel Garzón"/>
+        </div>
+        <div class="about-img-accent">
+          <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80&auto=format&fit=crop" alt="Café del Huila"/>
+        </div>
+        <div class="about-badge">
+          <span class="num">15</span>
+          <span class="lbl">Años</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <span class="tag reveal">Sobre Garzón · Huila</span>
+        <h2 class="reveal reveal-delay-1">El corazón<br/><em>del sur colombiano</em></h2>
+        <p class="reveal reveal-delay-2">Garzón es una ciudad que guarda en sus calles el sabor de lo auténtico: una arquitectura colonial que convive con el verdor de la cordillera y el aroma permanente del mejor café del mundo, el café del Huila, reconocido con múltiples premios internacionales.</p>
+        <p class="reveal reveal-delay-2">Nuestro hotel nació con un propósito: ser la puerta de entrada a esta experiencia. Desde aquí, el visitante descubre la Represa de Betania, los senderos ecológicos del Macizo, los mercados artesanales y la gastronomía que orgullosamente lleva el sello del sur del Huila.</p>
+        <div class="about-facts reveal reveal-delay-3">
+          <div class="fact"><div class="n">900m</div><div class="l">Sobre el nivel del mar</div></div>
+          <div class="fact"><div class="n">28°</div><div class="l">Temperatura promedio</div></div>
+          <div class="fact"><div class="n">50k+</div><div class="l">Visitantes al año</div></div>
+        </div>
+        <div style="margin-top:2.5rem;" class="reveal reveal-delay-4">
+          <a href="#gallery" class="btn btn-primary">Ver galería</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GALLERY ═══ -->
+<section id="gallery">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag reveal">Galería</span>
+      <h2 class="reveal reveal-delay-1">Una mirada a<br/><em style="font-style:italic;color:var(--mocha)">nuestros espacios</em></h2>
+      <p class="reveal reveal-delay-2">Naturaleza, arquitectura y experiencias que quedan en la memoria</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item g1">
+        <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=900&q=80&auto=format&fit=crop" alt="Piscina y jardín"/>
+      </div>
+      <div class="gallery-item g2">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80&auto=format&fit=crop" alt="Restaurante"/>
+      </div>
+      <div class="gallery-item g3">
+        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=700&q=80&auto=format&fit=crop" alt="Habitación"/>
+      </div>
+      <div class="gallery-item g4">
+        <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80&auto=format&fit=crop" alt="Naturaleza Huila"/>
+      </div>
+      <div class="gallery-item g5">
+        <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=900&q=80&auto=format&fit=crop" alt="Café colombiano"/>
+      </div>
+      <div class="gallery-item g6">
+        <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=700&q=80&auto=format&fit=crop" alt="Suite deluxe"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section id="services">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag reveal">Servicios</span>
+      <h2 class="reveal reveal-delay-1">Todo lo que necesitas<br/><em style="font-style:italic;color:var(--mocha)">para tu estadía perfecta</em></h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-num">01</span>
+        <span class="service-icon">🛏️</span>
+        <h3>Habitaciones Premium</h3>
+        <p>Habitaciones con vista a la montaña, climatización y ropa de cama de algodón egipcio. Opciones estándar, deluxe y suite disponibles.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <span class="service-num">02</span>
+        <span class="service-icon">🍽️</span>
+        <h3>Restaurante & Bar</h3>
+        <p>Cocina huilense auténtica con ingredientes locales. Bandeja paisa, asado huilense y coctelería artesanal con frutas tropicales.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <span class="service-num">03</span>
+        <span class="service-icon">☕</span>
+        <h3>Experiencia Cafetera</h3>
+        <p>Tour por fincas productoras, taller de catación y maridaje. Llevate el mejor café del Huila como souvenir.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <span class="service-num">04</span>
+        <span class="service-icon">🌿</span>
+        <h3>Ecoturismo</h3>
+        <p>Senderismo guiado por el Macizo Colombiano, avistamiento de aves y visita a la Represa de Betania.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <span class="service-num">05</span>
+        <span class="service-icon">🏊</span>
+        <h3>Piscina & Spa</h3>
+        <p>Piscina al aire libre con vista panorámica, jacuzzi y tratamientos de spa con plantas medicinales del Huila.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <span class="service-num">06</span>
+        <span class="service-icon">🚗</span>
+        <h3>Transfers & Tours</h3>
+        <p>Servicio de traslados desde Neiva, tours a San Agustín, Desierto de La Tatacoa y toda la región surcolombiana.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag reveal">Testimonios</span>
+      <h2 class="reveal reveal-delay-1" style="color:var(--cream)">Lo que dicen<br/><em style="font-style:italic;color:var(--gold-light)">nuestros huéspedes</em></h2>
+      <p class="reveal reveal-delay-2">Experiencias que hablan por sí solas</p>
+    </div>
+    <div class="testimonials-track">
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Una experiencia que superó todas mis expectativas. El desayuno con café recién tostado y la vista a las montañas… No existe nada igual."</blockquote>
+        <div class="reviewer">
+          <div class="reviewer-avatar">A</div>
+          <div>
+            <div class="reviewer-name">Alejandra Torres</div>
+            <div class="reviewer-loc">Bogotá, Colombia</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="stars">★★★★★</div>
+        <blockquote>"El tour cafetero fue increíble. Entendí por primera vez todo el proceso detrás de mi taza de café. El hotel tiene un alma especial."</blockquote>
+        <div class="reviewer">
+          <div class="reviewer-avatar">R</div>
+          <div>
+            <div class="reviewer-name">Ricardo Montoya</div>
+            <div class="reviewer-loc">Medellín, Colombia</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Vinimos en familia por el festival del río y quedamos enamorados de Garzón. El hotel es elegante pero cálido, exactamente lo que buscábamos."</blockquote>
+        <div class="reviewer">
+          <div class="reviewer-avatar">M</div>
+          <div>
+            <div class="reviewer-name">María Fernanda Ospina</div>
+            <div class="reviewer-loc">Cali, Colombia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <span class="tag reveal">Contacto & Reservas</span>
+        <h2 class="reveal reveal-delay-1">Empieza a<br/><em style="font-style:italic;color:var(--mocha)">planear tu viaje</em></h2>
+        <p class="reveal reveal-delay-2">Contáctanos y en menos de 2 horas tendrás tu cotización personalizada. Nuestro equipo te guiará para crear la estadía perfecta.</p>
+        <div class="contact-details reveal reveal-delay-2">
+          <div class="contact-detail">
+            <span class="cd-icon">📍</span>
+            <div class="cd-text">
+              <strong>Dirección</strong>
+              <span>Calle Principal #00-00, Garzón, Huila, Colombia</span>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <span class="cd-icon">📞</span>
+            <div class="cd-text">
+              <strong>Teléfono</strong>
+              <span>+57 (8) 833-0000 · +57 300 000 0000</span>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <span class="cd-icon">✉️</span>
+            <div class="cd-text">
+              <strong>Correo</strong>
+              <span>reservas@hotelgarzonhuila.com</span>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <span class="cd-icon">🕐</span>
+            <div class="cd-text">
+              <strong>Check-in / Check-out</strong>
+              <span>Check-in: 3:00 PM · Check-out: 12:00 PM</span>
+            </div>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-3">
+          <a href="https://wa.me/573000000000?text=Hola,%20quiero%20reservar%20en%20Hotel%20Garz%C3%B3n%20Huila" target="_blank" class="btn btn-whatsapp">
+            <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Contactar por WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form reveal reveal-delay-2">
+        <p class="form-title">Solicita tu reserva</p>
+        <form id="reservaForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre">Nombre completo</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required/>
+            </div>
+            <div class="form-group">
+              <label for="email">Correo electrónico</label>
+              <input type="email" id="email" name="email" placeholder="tu@correo.com" required/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="checkin">Fecha de llegada</label>
+              <input type="date" id="checkin" name="checkin" required/>
+            </div>
+            <div class="form-group">
+              <label for="checkout">Fecha de salida</label>
+              <input type="date" id="checkout" name="checkout" required/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="huespedes">Número de huéspedes</label>
+              <select id="huespedes" name="huespedes">
+                <option>1 persona</option>
+                <option>2 personas</option>
+                <option>3 personas</option>
+                <option>4+ personas</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="habitacion">Tipo de habitación</label>
+              <select id="habitacion" name="habitacion">
+                <option>Estándar</option>
+                <option>Deluxe</option>
+                <option>Suite Junior</option>
+                <option>Suite Premium</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="mensaje">Mensaje o solicitudes especiales</label>
+            <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos algo más sobre tu visita…"></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn-submit">Enviar solicitud →</button>
+          </div>
+          <p id="formMsg" style="margin-top:.8rem;font-size:.82rem;color:var(--sage);display:none;">✓ Solicitud enviada. Te contactaremos pronto.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="footer-logo">Hotel <span>Garzón</span> Huila</span>
+        <p>Donde la calidez del Huila y la majestuosidad de sus paisajes se convierten en una experiencia inolvidable para cada huésped.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">ig</a>
+          <a href="#" aria-label="TripAdvisor">ta</a>
+          <a href="#" aria-label="YouTube">yt</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Hotel</h4>
+        <ul>
+          <li><a href="#about">Nuestra historia</a></li>
+          <li><a href="#services">Servicios</a></li>
+          <li><a href="#gallery">Galería</a></li>
+          <li><a href="#testimonials">Testimonios</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Experiencias</h4>
+        <ul>
+          <li><a href="#">Ruta del Café</a></li>
+          <li><a href="#">Ecoturismo</a></li>
+          <li><a href="#">Arquitectura Colonial</a></li>
+          <li><a href="#">Gastronomía Huilense</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Información</h4>
+        <ul>
+          <li><a href="#">Política de reservas</a></li>
+          <li><a href="#">Cómo llegar</a></li>
+          <li><a href="#">Preguntas frecuentes</a></li>
+          <li><a href="#contact">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Hotel Garzón Huila. Todos los derechos reservados.</p>
+      <p>Diseñado con ♥ en Colombia · <a href="#">Política de privacidad</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ── Navbar scroll ── */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  /* ── Hamburger ── */
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }));
+
+  /* ── Scroll reveal ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: .1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ── Form ── */
+  document.getElementById('reservaForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const msg = document.getElementById('formMsg');
+    msg.style.display = 'block';
+    this.querySelectorAll('input, select, textarea').forEach(f => f.disabled = true);
+    this.querySelector('.btn-submit').textContent = 'Enviado ✓';
+    this.querySelector('.btn-submit').style.background = 'var(--sage)';
+  });
+
+  /* ── Set min date for check-in / checkout ── */
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('checkin').min = today;
+  document.getElementById('checkout').min = today;
+  document.getElementById('checkin').addEventListener('change', function() {
+    document.getElementById('checkout').min = this.value;
+  });
+</script>
+</body>
+</html>
